@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tree-node</title>
+    <style>
+        body {
+            font-family: Monospace;
+            background-color: #fff;
+            color: #000;
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        .canvas-warp {
+            height: 100%;
+            width: 100%;
+        }
+
+        .box {
+            position: relative;
+            width: 1280px;
+            height: 700px;
+            margin: 50px auto;
+        }
+
+        .box .opera-warp {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .box .opera-warp .item{
+            display: inline-block;
+            margin: 10px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background-color: #f2f3f4;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="canvas-warp" id="warp"></div>
+        <div class="opera-warp">
+            <span class="item" id="expend-close">收起全部</span>
+            <!-- <span class="item" id="close">收起全部</span> -->
+            <span class="item" id="fullScreen">全屏显示</span>
+            <span class="item" id="add">+</span>
+            <span class="item" id="reduce">-</span>
+        </div>
+
+    </div>
+</body>
+
+</html>
