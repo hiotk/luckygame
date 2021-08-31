@@ -1,8 +1,8 @@
 export default class Application {
-    constructor({ dom, scene, store }) {
+    constructor({ dom, history, store }) {
         this.dom = dom;
         this.store = store;
-        this.scene = scene;
+        this.history = history;
         this.loaded = false;
         this.storeDeltaTime = 1000;
         this.lastStoreTime = 0;
@@ -12,7 +12,7 @@ export default class Application {
         requestAnimationFrame((timeRange) => {
             this.update();
         });
-        this.scene.Render();
+        this.history.current.scene.Update();
         if (Date.now() - this.lastStoreTime > this.storeDeltaTime) {
             this.lastStoreTime = Date.now();
             this.store.setState('updatedAt', this.lastStoreTime);
@@ -22,19 +22,13 @@ export default class Application {
 
     start() {
         this.store.load();
-        this.scene.store = this.store;
-        this.scene.Init(this.dom);
+        const canvas = document.createElement('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        this.dom.appendChild(canvas);
+        this.history.current.store = this.store;
+        this.history.current.scene.Init(canvas);
         this.loaded = true;
         this.update();
-    }
-
-    setData(treeData) {
-        this.store.setState('treeData', treeData);
-        this.scene.setData(true);
-    }
-
-    initTreeData(originData) {
-        this.store.initTreeData(originData);
-        this.scene.setData(true);
     }
 }

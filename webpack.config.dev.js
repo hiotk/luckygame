@@ -23,7 +23,10 @@ module.exports = {
         modules: [
             'node_modules',
             path.resolve(__dirname)
-        ]
+        ],
+        alias: {
+            '@': path.resolve(__dirname, 'src')
+        }
     },
     devServer: {
         host: '0.0.0.0',

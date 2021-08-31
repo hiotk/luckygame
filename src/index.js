@@ -1,8 +1,7 @@
-import core from './core/index';
-import Mind from './mind/Mind';
-
-console.log(core);
+import Store from '@/store/Store';
+import Application from '@/application/Application';
 
 export default {
-    Store: core.Store, Application: core.Application, Mind
+    Store,
+    Application
 };
