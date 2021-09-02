@@ -10,9 +10,9 @@ export default class LoadScene extends Scene {
             'assets/8728.png'
         ];
         this.preload = new Preload();
-        console.log(this.preload);
         this.preload.sources.push(...sources);
         this.preload.preload();
+        this.bindEvent();
     }
 
     Update() {
@@ -25,12 +25,44 @@ export default class LoadScene extends Scene {
         const size = this.context.measureText(text);
         this.context.fillText(text, this.canvasWidth / 2 - size.width / 2, this.canvasHeight / 2);
         this.percent = this.preload.percent;
-        if (this.percent === 100) {
-            this.history.push('/main', {});
-        }
+    }
+
+    onMouseDown = (evt) => {
+        this.history.push('/main', {});
+    }
+
+    onMouseUp = (evt) => {}
+
+    bindEvent() {
+        // 注册事件
+        this.canvas.addEventListener('mousedown', this.onMouseDown, {
+            capture: true,
+            passive: false,
+            once: false
+        });
+        this.canvas.addEventListener('mouseup', this.onMouseUp, {
+            capture: true,
+            passive: false,
+            once: false
+        });
+    }
+
+    unbindEvent = () => {
+        console.log('unbind')
+        this.canvas.removeEventListener('mousedown', this.onMouseDown, {
+            capture: true,
+            passive: false,
+            once: false
+        });
+        this.canvas.removeEventListener('mouseup', this.onMouseUp, {
+            capture: true,
+            passive: false,
+            once: false
+        });
     }
 
     Destroy() {
         this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+        this.unbindEvent();
     }
 }

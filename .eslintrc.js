@@ -24,9 +24,13 @@ module.exports = {
     },
     parserOptions: {
         parser: 'babel-eslint',
-        ecmaVersion: 2018,
-        sourceType: 'module'
-        // parser: 'babel-eslint'
+        ecmaVersion: 6,
+        sourceType: "module",
+        ecmaFeatures: {
+          "jsx": true,
+          "modules": true,
+          "experimentalObjectRestSpread": true
+        }
     },
     plugins: [
         // 'vue'

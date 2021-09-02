@@ -1,24 +1,28 @@
 export default class Component {
     constructor() {
-        this.scene = null; // 场景
-        this.id = ''; // 组件唯一标识
-        this.store = null; // 仓库
-        this.state = null; // 数据
-        this.context = null; // 画笔
-        this.componentType = ''; // 组件类型
-        this.index = Component.Index++; // 组件层级
-        this.visible = false; // 组件可见性
-        this.mouseIn = false; // 鼠标是否在当前对象上
+        this.id = '';
+        this.scene = null;
+        this.store = null;
+        this.state = null;
+        this.context = null;
+        this.componentType = '';
+        this.isComponent = true;
+        this.index = Component.Index++;
+        this.visible = false;
+        this.clickable = false;
+        this.load = false;
     }
 
-    Create() {
+    Create() {}
+
+    isScope = ({ x, y }) => {
+        this.state = this.store.state[this.componentType][this.id];
+        return x >= this.state.x && x <= (this.state.x + this.state.width) && y >= this.state.y && y <= (this.state.y + this.state.height);
     }
 
-    Update() {
-    }
+    Update() {}
 
-    Destroy() {
-    }
+    Destroy() {}
 }
 
 Component.Index = 0;

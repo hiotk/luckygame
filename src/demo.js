@@ -8,3 +8,4 @@ window.app = new luckyGame.Application({
 });
 
 window.app.start();
+window.app.history.push('/building', {});

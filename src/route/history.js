@@ -29,6 +29,8 @@ export default {
             const { scene } = this.scenes[findIndex];
             // 卸载当前场景
             this.current.scene.Destroy();
+            scene.store = this.current.store;
+            scene.params = params;
             // 初始化新的场景
             scene.Init(this.current.scene.canvas);
             // 保存新的场景
@@ -38,8 +40,6 @@ export default {
                 scene,
                 store: this.current.store
             };
-            this.current.scene.params = this.current.params;
-            this.current.scene.store = this.current.store;
             this.current.scene.history = this;
             // 将新的场景放入历史堆栈中
             this.history.push(this.current);

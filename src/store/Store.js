@@ -2,9 +2,7 @@ export default class Store {
     constructor() {
         this.state = {
             scale: 1,
-            updatedAt: Date.now(),
-            units: {},
-            enemies: {}
+            updatedAt: Date.now()
         };
         this.prefix = 'luckygame:';
         this.loaded = false;

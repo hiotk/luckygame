@@ -36,7 +36,7 @@ export default class Scene {
         this.canvasHeight = this.canvas.height;
         this.canvasRangeEndPos = { x: this.canvasWidth, y: this.canvasHeight };
         this.context = canvas.getContext('2d', {
-            antialias: false
+            antialias: true
         });
         this.Create();
     }
@@ -61,28 +61,15 @@ export default class Scene {
         });
     }
 
-    /**
-     * @abstract
-     * 数据层的一些计算
-     */
-    Create() {}
+    Create() {
+    }
 
-    /**
-     * @abstract
-     * 更新场景
-     */
     Update() {
         // 清除画布
         this.context.setTransform(1, 0, 0, 1, 0, 0);
         this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-
-        // 更新2D组件
-        this.updateChildren();
     }
 
-    /**
-     * 销毁tree-node
-     */
     Destroy() {
     }
 }
