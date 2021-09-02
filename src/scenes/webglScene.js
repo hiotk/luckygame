@@ -1,5 +1,6 @@
 import Scene from '@/scenes/Scene';
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 export default class WebGLScene extends Scene {
     constructor() {
@@ -19,6 +20,8 @@ export default class WebGLScene extends Scene {
         this.context = canvas.getContext('2d', {
             antialias: true
         });
+        this.scene.add(new THREE.AmbientLight(0xffffff, 1));
+        this.scene.add(new THREE.AxesHelper(15500));
         this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
         this.renderer.setSize(this.canvasWidth, this.canvasHeight);
@@ -28,7 +31,12 @@ export default class WebGLScene extends Scene {
     Create() {
     }
 
-    Update() {}
+    Update() {
+        if (this.renderer) {
+            this.renderer.render(this.scene, this.camera);
+        }
+        this.context.drawImage(this.renderer.domElement, 0, 0);
+    }
 
     updateModels() {
         const visibleModels = this.models.filter(model => model.visible);

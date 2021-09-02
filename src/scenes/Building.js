@@ -1,5 +1,6 @@
 import WebGLScene from '@/scenes/webglScene';
 import Building from '@/models/building';
+import * as THREE from 'three';
 
 export default class BuildingScene extends WebGLScene {
     Create() {
@@ -12,11 +13,13 @@ export default class BuildingScene extends WebGLScene {
             y: 0,
             z: 0
         };
+        this.scene.background = new THREE.Color(0x000000);
         this.models.push(this.building);
         console.log(this.models);
     }
 
     Update() {
+        super.Update();
         this.updateModels();
     }
 

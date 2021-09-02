@@ -17,7 +17,7 @@ export default class Model {
         const matArray = [];
         for (let i = 0; i < data.material.length; i++) {
             const mat = new THREE.MeshPhongMaterial({});
-            mat.copy(data.materials[i]);
+            mat.copy(data.material[i]);
             matArray.push(mat);
         }
         return matArray;
@@ -30,7 +30,13 @@ export default class Model {
         loader.load(url, (object) => {
             console.log(object);
             if (object.type === 'Group') {
-                const mesh = object.children[0];
+                const data = object.children[0];
+                const matArray = this.createMaterials(data);
+                this.mesh = new THREE.Mesh(data.geometry, matArray);
+                this.mesh.position.set(0, 0, 0);
+                console.log(this.mesh);
+                console.log(this.scene);
+                this.scene.add(this.mesh);
             }
             self.load = true;
         });
