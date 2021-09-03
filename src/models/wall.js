@@ -12,10 +12,8 @@ export default class Wall extends Model {
     }
 
     Update() {
-
     }
 
     Destroy() {
-
     }
 }

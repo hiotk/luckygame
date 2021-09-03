@@ -6,7 +6,7 @@ export default class Model {
         this.visible = false;
         this.isModel = true;
         this.mesh = null;
-        this.scene = null;
+        this.Scene = null;
         this.load = false;
         this.modelType = '';
         this.store = null;
@@ -35,8 +35,8 @@ export default class Model {
                 this.mesh = new THREE.Mesh(data.geometry, matArray);
                 this.mesh.position.set(0, 0, 0);
                 console.log(this.mesh);
-                console.log(this.scene);
-                this.scene.add(this.mesh);
+                console.log(this.Scene);
+                this.Scene.add(this.mesh);
             }
             self.load = true;
         });

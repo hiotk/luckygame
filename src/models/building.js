@@ -1,5 +1,6 @@
 import Model from '@/models/Model';
 import Wall from '@/models/wall';
+import * as THREE from 'three';
 
 export default class Building extends Model {
     constructor() {
@@ -31,7 +32,7 @@ export default class Building extends Model {
             if (!child.context) {
                 child.parent = this;
                 child.context = this.context;
-                child.scene = this.scene;
+                child.Scene = this.Scene;
                 child.camera = this.camera;
                 child.Create();
             } else {
